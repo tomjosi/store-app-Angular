@@ -1,31 +1,22 @@
-import {Component} from '@angular/core'
+import { Component, Input, Output,EventEmitter } from '@angular/core'
+// import { Input, Output } from '@angular/core/src/metadata/directives';
 import { MyProduct } from './my-product.component';
+// import { EventEmitter } from '@angular/core/src/event_emitter';
 
 @Component({
     selector: 'product-detail',
-    template: ` 
-    
-    <li *ngFor="let product of p5">
-    {{ product?.id }}:{{ product?.name }}
-    </li>
-    
-    `,
-    styles: [`
-    div {
-      
-      border:1px solid blue;
-      
-    }
-   `]
-    })
-    export class ProductDetail {
-        p1;
-        p2= new MyProduct(2,"Watch",720,"QUARTZ");
-        p3= new MyProduct(3,"LapTop",220,"HP");
-        p4= new MyProduct(4,"TV",1520,"SONY");
 
-        p5: MyProduct[]=[this.p1,this.p2,this.p3,this.p4];
-
+    template: `
+    <span *ngIf="product">
+    {{product.description}}</span>
+    <button (click)="requestDelete()">delete</button>`
+})
+export class ProductDetailComponent {
+    @Input()
+    product: MyProduct
+    @Output()
+    deleteProduct = new EventEmitter<MyProduct>();
+    requestDelete() {
+        this.deleteProduct.emit(this.product);
     }
-    
-    
+}

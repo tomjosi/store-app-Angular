@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <!--The content below is only a placeholder and can be replaced.-->
     <div style="text-align:left">
      <h1> {{title}}</h1>
-    <product-detail></product-detail>
+    <product-list></product-list>
 
     </div>
   `,
